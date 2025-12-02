@@ -160,20 +160,22 @@
 ```
 Firestore
 ├── boards: 価値観ボード一覧コレクション
-│   ├── backgroundImageUrl
+│   ├── backgroundImageUrl: String 背景画像URL
 │   ├── createdAt: Timestamp 作成日時
 │   ├── items: Array<Object>
 │   │   ├── label: String テーマ名
 │   │   └── value: String テーマ内容
+│   ├── styleBackgroundColor: String ボードの背景色
+│   ├── styleTextColor: String ボードの文字色
 │   ├── title: String タイトル
 │   ├── updatedAt: Timestamp 更新日時
 │   └── userId: String 作成したユーザーのUid
 ├── templates: テンプレート一覧コレクション
 │   ├── createdAt: Timestamp 作成日時
+│   ├── createdBy: UserId | null 作成者のUid
 │   ├── itemLabels: Array<String> テーマ名の配列
 │   ├── type: String('official' | 'custom')
-│   ├── updatedAt: Timestamp 更新日時
-│   └── userId: String | null 作成したユーザーのUid
+│   └── updatedAt: Timestamp 更新日時
 └── users: ユーザー一覧コレクション
     ├── createdAt: Timestamp 作成日時
     ├── displayName: String 表示名
