@@ -1,0 +1,204 @@
+/* ボードセルコンテナ */
+.boardCell {
+  position: relative;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  height: 72px;
+  text-align: left;
+  width: 100%;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:hover {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: scale(1.02);
+  }
+
+  .label {
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    text-decoration: inherit;
+    text-transform: inherit;
+    -webkit-appearance: none;
+
+    .labelDisplay {
+      font-size: 10px;
+      font-weight: 500;
+      opacity: 0.8;
+      color: var(--color-text-black);
+      cursor: pointer;
+      white-space: nowrap;
+      line-height: 1.25;
+    }
+  }
+
+  .value {
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: var(--color-text-black);
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    font: inherit;
+    text-align: inherit;
+    text-decoration: inherit;
+    text-transform: inherit;
+    -webkit-appearance: none;
+
+    .valueDisplay {
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--color-text-black);
+      cursor: pointer;
+      white-space: wrap;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .valueDisplayLong {
+      font-size: 10px;
+    }
+  }
+}
+
+/* ラベル入力 */
+.labelInput {
+  font-size: 8px;
+  font-weight: 500;
+  background-color: transparent;
+  border-bottom: 1px solid var(--color-primary);
+  outline: none;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .labelInput {
+    font-size: 10px;
+  }
+}
+
+/* ラベル表示 */
+.labelDisplay {
+  font-size: 8px;
+  font-weight: 500;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.25;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.labelDisplay:hover {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .labelDisplay {
+    font-size: 10px;
+  }
+}
+
+/* ラベルプレースホルダー */
+.labelPlaceholder {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+/* 値コンテナ */
+.valueContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 値入力ラッパー */
+.valueInputWrapper {
+  width: 100%;
+}
+
+/* 値入力 */
+.valueInput {
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  background-color: transparent;
+  border-bottom: 1px solid var(--color-primary);
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .valueInput {
+    font-size: 12px;
+  }
+}
+
+/* 値表示 */
+.valueDisplay {
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .valueDisplay {
+    font-size: 12px;
+  }
+}
+
+/* アイコンコンテナ */
+.iconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.boardCell:hover .iconContainer {
+  opacity: 0.7;
+}
+
+/* アイコン */
+.icon {
+  height: 12px;
+  width: 12px;
+}
