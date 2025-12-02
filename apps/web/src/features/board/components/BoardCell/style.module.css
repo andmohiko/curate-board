@@ -41,6 +41,19 @@
     text-transform: inherit;
     -webkit-appearance: none;
 
+    .labelInput {
+      font-size: 10px;
+      font-weight: 500;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid var(--color-primary);
+      outline: none;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      line-height: 1.25;
+    }
+
     .labelDisplay {
       font-size: 10px;
       font-weight: 500;
@@ -68,7 +81,22 @@
     text-transform: inherit;
     -webkit-appearance: none;
 
+    .valueInput {
+      font-size: 14px;
+      font-weight: bold;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid var(--color-primary);
+      outline: none;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+
     .valueDisplay {
+      display: grid;
+      place-content: center;
       font-size: 14px;
       font-weight: bold;
       color: var(--color-text-black);
@@ -84,121 +112,6 @@
   }
 }
 
-/* ラベル入力 */
-.labelInput {
-  font-size: 8px;
-  font-weight: 500;
-  background-color: transparent;
-  border-bottom: 1px solid var(--color-primary);
-  outline: none;
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .labelInput {
-    font-size: 10px;
-  }
-}
-
-/* ラベル表示 */
-.labelDisplay {
-  font-size: 8px;
-  font-weight: 500;
-  opacity: 0.7;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 1.25;
-  background: none;
-  border: none;
-  padding: 0;
-  text-align: left;
-  width: 100%;
-}
-
-.labelDisplay:hover {
-  opacity: 1;
-}
-
-@media (min-width: 768px) {
-  .labelDisplay {
-    font-size: 10px;
-  }
-}
-
-/* ラベルプレースホルダー */
-.labelPlaceholder {
-  font-style: italic;
-  opacity: 0.5;
-}
-
-/* 値コンテナ */
-.valueContainer {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 値入力ラッパー */
-.valueInputWrapper {
-  width: 100%;
-}
-
-/* 値入力 */
-.valueInput {
-  width: 100%;
-  text-align: center;
-  font-size: 10px;
-  font-weight: 700;
-  background-color: transparent;
-  border-bottom: 1px solid var(--color-primary);
-  outline: none;
-}
-
-@media (min-width: 768px) {
-  .valueInput {
-    font-size: 12px;
-  }
-}
-
-/* 値表示 */
-.valueDisplay {
-  font-size: 10px;
-  font-weight: 700;
-  text-align: center;
-  word-break: break-all;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.25;
-}
-
-@media (min-width: 768px) {
-  .valueDisplay {
-    font-size: 12px;
-  }
-}
-
-/* アイコンコンテナ */
-.iconContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0.4;
-  transition: opacity 0.2s;
-}
-
-.boardCell:hover .iconContainer {
-  opacity: 0.7;
-}
-
-/* アイコン */
-.icon {
-  height: 12px;
-  width: 12px;
+.editing {
+  background-color: var(--bg-white);
 }

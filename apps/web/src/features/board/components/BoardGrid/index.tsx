@@ -7,8 +7,9 @@ type Props = {
   styleBackgroundColor: string
   styleTextColor: string
   backgroundImageUrl?: string
-  onItemChange: (index: number, value: string) => void
-  onLabelChange: (index: number, label: string) => void
+  onItemChange?: (index: number, value: string) => void
+  onLabelChange?: (index: number, label: string) => void
+  readOnly?: boolean
 }
 
 export const BoardGrid = ({
@@ -18,6 +19,7 @@ export const BoardGrid = ({
   backgroundImageUrl,
   onItemChange,
   onLabelChange,
+  readOnly = false,
 }: Props): React.ReactNode => {
   return (
     <div
@@ -38,8 +40,9 @@ export const BoardGrid = ({
             key={item.label}
             item={item}
             textColor={styleTextColor}
-            onValueChange={(value) => onItemChange(index, value)}
-            onLabelChange={(label) => onLabelChange(index, label)}
+            onValueChange={(value) => onItemChange?.(index, value)}
+            onLabelChange={(label) => onLabelChange?.(index, label)}
+            readOnly={readOnly}
           />
         ))}
       </div>

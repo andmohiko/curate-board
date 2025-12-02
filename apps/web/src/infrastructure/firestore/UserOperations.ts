@@ -51,3 +51,24 @@ export const isExistsUserOperation = async (
   const docSnap = await getDoc(doc(db, userCollection, userId))
   return docSnap.exists()
 }
+
+/**
+ * ユーザーIDでユーザー情報を取得するoperation関数
+ *
+ * @param userId - 取得するユーザーのID
+ * @returns ユーザーデータ、存在しない場合はnull
+ */
+export const fetchUserByIdOperation = async (
+  userId: string,
+): Promise<User | null> => {
+  const docSnap = await getDoc(doc(db, userCollection, userId))
+  if (!docSnap.exists()) {
+    return null
+  }
+  const data = docSnap.data()
+  const user = {
+    userId: docSnap.id,
+    ...convertDate(data, dateColumns),
+  } as User
+  return user
+}
