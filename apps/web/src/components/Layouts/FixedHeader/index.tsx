@@ -16,26 +16,21 @@ export const FixedHeader = ({
   const { pathname, push } = useRouter()
 
   const back = () => {
-    // プロフィール編集画面いるときはマイページに戻る
-    if (pathname === '/i/edit') {
-      push('/i/mypage')
-      return
-    }
     // 設定画面いるときはマイページに戻る
-    if (pathname === '/i/settings') {
-      push('/i/mypage')
+    if (pathname === '/settings') {
+      push('/boards')
       return
     }
     // 退会画面いるときは設定画面に戻る
     if (pathname.startsWith('/i/delete')) {
-      push('/i/settings')
+      push('/settings')
       return
     }
 
     push('/')
   }
 
-  const isShowSettingsButton = pathname === '/i/mypage'
+  const isShowSettingsButton = pathname === '/boards'
 
   return (
     <header className={styles.fixedHeader}>
@@ -51,7 +46,7 @@ export const FixedHeader = ({
         <div className={styles.rightIcon}>
           <IconButton
             icon={<IoSettingsOutline size={24} />}
-            onClick={() => push('/i/settings')}
+            onClick={() => push('/settings')}
           />
         </div>
       ) : (

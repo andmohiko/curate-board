@@ -8,11 +8,13 @@ import styles from './style.module.css'
 type Props = {
   children?: ReactNode
   title?: string
+  isShowBackButton?: boolean
 }
 
 export const DefaultLayout = ({
   children,
   title = 'キュレーションボード',
+  isShowBackButton = false,
 }: Props): ReactElement => {
   const { isLoading } = useLoadingContext()
 
@@ -21,7 +23,7 @@ export const DefaultLayout = ({
       <PageHead />
       <div className={styles.headerWrapper}>
         <div className={styles.spWindow}>
-          <FixedHeader title={title} />
+          <FixedHeader title={title} isShowBackButton={isShowBackButton} />
         </div>
       </div>
 

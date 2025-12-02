@@ -5,7 +5,7 @@ export const editProfileSchema = z.object({
     .string()
     .min(1, { message: '必須項目です' })
     .max(20, { message: '20文字以内で入力してください' }),
-  profileImageUrl: z.string().url().optional(),
+  profileImageUrl: z.string().optional(),
   username: z
     .string()
     .min(1, { message: '必須項目です' })

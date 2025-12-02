@@ -1,17 +1,16 @@
 import type { User } from '@curate/common'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Avatar, Card, TextInput } from '@mantine/core'
-import Image from 'next/image'
-import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import { FiCamera } from 'react-icons/fi'
+import { Card, TextInput } from '@mantine/core'
+import { Controller, useForm } from 'react-hook-form'
 import { BasicButton } from '~/components/Buttons/BasicButton'
+import { ProfileImageInput } from '~/components/Inputs/ProfileImageInput'
 import { LabelText } from '~/components/Typography/LabelText'
 import { useEditProfile } from '~/features/settings/hooks/useEditProfile'
 import {
   type EditProfileInputType,
   editProfileSchema,
 } from '~/features/settings/types'
+import { useFirebaseAuthContext } from '~/providers/FirebaseAuthProvider'
 import styles from './style.module.css'
 
 type ProfileEditFormProps = {
@@ -26,43 +25,22 @@ type ProfileEditFormProps = {
 export const ProfileEditForm = ({
   user,
 }: ProfileEditFormProps): React.ReactNode => {
+  const { uid } = useFirebaseAuthContext()
   const [updateProfile, , isLoading] = useEditProfile()
 
   const {
     register,
+    control,
     handleSubmit,
-    formState: { errors },
-    setValue,
-    watch,
+    formState: { errors, isDirty },
   } = useForm<EditProfileInputType>({
     resolver: zodResolver(editProfileSchema),
     defaultValues: {
-      displayName: '',
-      username: '',
-      profileImageUrl: undefined,
+      displayName: user.displayName,
+      username: user.username,
+      profileImageUrl: user.profileImageUrl || undefined,
     },
   })
-
-  const displayName = watch('displayName')
-  const profileImageUrl = watch('profileImageUrl')
-
-  // ユーザー情報が取得できたらフォームに設定
-  useEffect(() => {
-    setValue('displayName', user.displayName)
-    setValue('username', user.username)
-    if (user.profileImageUrl) {
-      setValue('profileImageUrl', user.profileImageUrl)
-    }
-  }, [user, setValue])
-
-  /**
-   * プロフィール画像アップロード処理
-   * TODO: 画像アップロード処理を実装
-   */
-  const handleImageUpload = () => {
-    // TODO: 画像アップロード処理
-  }
-
   /**
    * プロフィール保存処理
    */
@@ -73,14 +51,6 @@ export const ProfileEditForm = ({
       // エラーはuseEditProfile内でトースト表示される
       console.error('プロフィール更新エラー:', error)
     }
-  }
-
-  /**
-   * ユーザーID入力時のバリデーション（半角英数字とアンダースコアのみ）
-   */
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/[^a-zA-Z0-9_]/g, '')
-    setValue('username', value, { shouldValidate: true })
   }
 
   return (
@@ -99,30 +69,19 @@ export const ProfileEditForm = ({
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.cardContent}>
           {/* プロフィール画像 */}
-          <div className={styles.avatarSection}>
-            <div className={styles.avatarWrapper}>
-              {profileImageUrl || user.profileImageUrl ? (
-                <Image
-                  src={profileImageUrl || user.profileImageUrl || ''}
-                  alt={displayName || user.displayName}
-                  width={80}
-                  height={80}
-                  className={styles.avatarImage}
-                />
-              ) : (
-                <Avatar size={80} radius="xl" className={styles.avatarFallback}>
-                  {(displayName || user.displayName).slice(0, 2)}
-                </Avatar>
-              )}
-              <button
-                type="button"
-                onClick={handleImageUpload}
-                className={styles.cameraButton}
-              >
-                <FiCamera size={16} />
-              </button>
-            </div>
-          </div>
+          <Controller
+            control={control}
+            name="profileImageUrl"
+            render={({ field }) => (
+              <ProfileImageInput
+                value={field.value || undefined}
+                onChange={field.onChange}
+                error={errors.profileImageUrl?.message}
+                label=""
+                storagePath={`/images/${uid}`}
+              />
+            )}
+          />
 
           {/* 表示名 */}
           <div className={styles.inputSection}>
@@ -139,19 +98,14 @@ export const ProfileEditForm = ({
           <div className={styles.inputSection}>
             <LabelText size="sm">ユーザーID</LabelText>
             <div className={styles.usernameInputWrapper}>
-              <span className={styles.atSymbol}>@</span>
               <TextInput
-                {...register('username', {
-                  onChange: handleUsernameChange,
-                })}
+                {...register('username')}
                 placeholder="user_id"
                 error={errors.username?.message}
                 className={styles.usernameInput}
+                leftSection={<span className={styles.atSymbol}>@</span>}
               />
             </div>
-            <p className={styles.helperText}>
-              半角英数字とアンダースコアのみ使用可能
-            </p>
           </div>
 
           <div className={styles.saveButtonWrapper}>
@@ -160,6 +114,7 @@ export const ProfileEditForm = ({
               fullWidth
               loading={isLoading}
               importance="primary"
+              disabled={!isDirty}
             >
               保存
             </BasicButton>
