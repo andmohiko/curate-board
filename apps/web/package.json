@@ -1,5 +1,5 @@
 {
-  "name": "@firebase-monorepo/web",
+  "name": "@curate/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {

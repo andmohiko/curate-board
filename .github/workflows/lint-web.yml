@@ -1,4 +1,4 @@
-name: Run @firebase-monorepo/web lint
+name: Run @curate/web lint
 on:
   push:
     paths:
