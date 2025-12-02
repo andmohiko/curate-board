@@ -6,15 +6,77 @@ service cloud.firestore {
     function requestData() {
       return request.resource.data;
     }
-
+    function resourceData() {
+      return resource.data;
+    }
     // ログイン済かどうか
     function isSignedIn() {
       return request.auth.uid != null;
     }
-
     // ユーザーIDが一致するかどうか
     function isUser(userId) {
       return request.auth.uid == userId;
+    }
+
+    function isValidUserSchema(requestData) {
+      return requestData.size() == 6
+        && 'createdAt' in requestData && requestData.createdAt is timestamp
+        && 'displayName' in requestData && requestData.displayName is string
+        && 'email' in requestData && requestData.email is string
+        && 'profileImageUrl' in requestData && requestData.profileImageUrl is string
+        && 'updatedAt' in requestData && requestData.updatedAt is timestamp
+        && 'username' in requestData && requestData.username is string;
+    }
+
+    // ボードのスキーマ検証
+    function isValidBoardSchema(requestData) {
+      return requestData.size() == 8
+        && 'backgroundImageUrl' in requestData && requestData.backgroundImageUrl is string
+        && 'createdAt' in requestData && requestData.createdAt is timestamp
+        && 'items' in requestData && requestData.items is list && requestData.items.size() == 21
+        && 'styleBackgroundColor' in requestData && requestData.styleBackgroundColor is string
+        && 'styleTextColor' in requestData && requestData.styleTextColor is string
+        && 'title' in requestData && requestData.title is string
+        && 'updatedAt' in requestData && requestData.updatedAt is timestamp
+        && 'userId' in requestData && requestData.userId is string;
+    }
+
+    // テンプレートのスキーマ検証
+    function isValidTemplateSchema(requestData) {
+      return requestData.size() == 5
+        && 'createdAt' in requestData && requestData.createdAt is timestamp
+        && 'createdBy' in requestData && (requestData.createdBy is string || requestData.createdBy == null)
+        && 'itemLabels' in requestData && requestData.itemLabels is list && requestData.itemLabels.size() == 21
+        && 'type' in requestData && requestData.type is string && requestData.type in ['official', 'custom']
+        && 'updatedAt' in requestData && requestData.updatedAt is timestamp;
+    }
+
+    match /boards/{boardId} {
+      // 誰でも読める（他ユーザーのボード閲覧機能のため）
+      allow read;
+      // 作成：ログイン済み && 自分のuserId && スキーマ検証
+      allow create: if isSignedIn() && isUser(requestData().userId) && isValidBoardSchema(requestData());
+      // 更新：ログイン済み && 自分のボード && スキーマ検証
+      allow update: if isSignedIn() && isUser(requestData().userId) && isValidBoardSchema(requestData());
+      // 削除：ログイン済み && 自分のボード
+      allow delete: if isSignedIn() && isUser(resourceData().userId);
+    }
+
+    match /templates/{templateId} {
+      // 誰でも読める（公式テンプレートは誰でも見れる）
+      allow read;
+      // 作成：ログイン済み && スキーマ検証
+      allow create: if isSignedIn() && isUser(requestData().createdBy) && isValidTemplateSchema(requestData());
+      // 更新：ログイン済み && 自分のテンプレート（カスタムテンプレートのみ） && スキーマ検証
+      allow update: if isSignedIn() && isUser(requestData().createdBy) && isValidTemplateSchema(requestData());
+      // 削除：ログイン済み && 自分のテンプレート（カスタムテンプレートのみ）
+      allow delete: if isSignedIn() && isUser(resourceData().createdBy);
+    }
+
+    match /users/{userId} {
+      allow read;
+      allow create: if isSignedIn() && isUser(userId) && isValidUserSchema(requestData());
+      allow update: if isSignedIn() && isUser(userId) && isValidUserSchema(requestData());
     }
   }
 }
