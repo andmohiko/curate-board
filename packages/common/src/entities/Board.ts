@@ -11,6 +11,11 @@ import type { UserId } from './User'
 export const boardCollection = 'boards'
 
 /**
+ * ボードIDの型定義
+ */
+export type BoardId = string
+
+/**
  * ボードアイテムの型定義
  * 各マス目に設定するテーマとその内容を表す
  */

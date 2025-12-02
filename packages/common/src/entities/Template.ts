@@ -11,6 +11,11 @@ import type { UserId } from './User'
 export const templateCollection = 'templates'
 
 /**
+ * テンプレートIDの型定義
+ */
+export type TemplateId = string
+
+/**
  * テンプレートタイプ
  * 公式テンプレートまたはカスタムテンプレートを表す
  */
