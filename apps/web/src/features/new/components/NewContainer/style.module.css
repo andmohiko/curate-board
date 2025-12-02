@@ -1,0 +1,180 @@
+/* コンテナ */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(37, 37, 72, 0.1),
+    var(--bg-white)
+  );
+}
+
+/* コンテンツ */
+.content {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ヘッダー（ロゴ・タイトル） */
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ロゴ */
+.logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background-color: var(--color-primary);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoIcon {
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-white);
+}
+
+/* タイトル */
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-black);
+  margin: 0;
+}
+
+/* 説明文 */
+.description {
+  font-size: 0.875rem;
+  color: var(--color-text-black);
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* カード */
+.card {
+  border: none;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: var(--bg-white);
+}
+
+.cardContent {
+  padding: 1rem;
+}
+
+/* グリッド */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.375rem;
+}
+
+/* グリッドアイテム */
+.gridItem {
+  background-color: rgba(37, 37, 72, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.gridItemLabel {
+  font-size: 10px;
+  color: var(--color-text-black);
+  opacity: 0.7;
+  margin: 0 0 0.25rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gridItemValue {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-black);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ログインセクション */
+.loginSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Googleログインボタン */
+.googleButton {
+  width: 100%;
+  height: 48px;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: var(--bg-white);
+  border: 1px solid var(--color-border-gray0);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--color-text-black);
+}
+
+.googleButton:hover {
+  background-color: var(--bg-white);
+  border-color: var(--color-primary);
+}
+
+.googleButton:active {
+  transform: scale(0.98);
+}
+
+.googleIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* 利用規約・プライバシーポリシー */
+.terms {
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--color-text-black);
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+
+.link:hover {
+  opacity: 1;
+}
