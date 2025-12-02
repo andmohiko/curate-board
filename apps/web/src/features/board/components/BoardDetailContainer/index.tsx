@@ -2,6 +2,7 @@ import type { User } from '@curate/common'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import { LoadingAnimation } from '~/components/Base/Loading'
+import { ShareButton } from '~/components/Buttons/ShareButton'
 import { LabelText } from '~/components/Typography/LabelText'
 import { ParagraphText } from '~/components/Typography/ParagraphText'
 import { BoardGrid } from '~/features/board/components/BoardGrid'
@@ -88,6 +89,11 @@ export const BoardDetailContainer = ({ boardId }: Props): React.ReactNode => {
             readOnly
           />
         </div>
+
+        <ShareButton
+          body={`これが私の${board.title}ボードです！`}
+          url={`${process.env.NEXT_PUBLIC_APP_URL}/boards/${board.boardId}`}
+        />
 
         {/* 作成者情報 */}
         <BoardAuthorInfo user={user} createdAt={board.createdAt} />
