@@ -20,7 +20,7 @@ import {
 import { auth, serverTimestamp } from '~/lib/firebase'
 import { errorMessage } from '~/utils/errorMessage'
 
-const authRequiredPaths = ['/boards', '/settings', '/delete']
+const authRequiredPaths = ['/boards', '/create', '/settings', '/delete']
 
 const FirebaseAuthContext = createContext<{
   currentUser: User | null | undefined
@@ -116,7 +116,8 @@ const FirebaseAuthProvider = ({
 
   const logout = useCallback(async () => {
     await signOut(auth)
-  }, [])
+    push('/')
+  }, [push])
 
   return (
     <FirebaseAuthContext.Provider

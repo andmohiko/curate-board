@@ -1,0 +1,92 @@
+/* コンテナ */
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 16px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 32px;
+
+    /* ヘッダー */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+
+      .title {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--color-text-black);
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    /* カード */
+    .card {
+      background-color: var(--bg-white);
+      border: none;
+      box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+      .cardHeader {
+        margin-bottom: 16px;
+      }
+
+      .cardContent {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        /* アカウント情報 */
+        .accountInfo {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          padding: 8px 0;
+        }
+
+        /* ログアウトセクション */
+        .logoutSection {
+          padding-top: 12px;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* リンクボタン */
+        .linkButton {
+          width: 100%;
+          text-align: left;
+          padding: 10px 8px;
+          font-size: 14px;
+          color: var(--color-text-black);
+          background-color: transparent;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+
+          &:active {
+            background-color: rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        /* バージョンセクション */
+        .versionSection {
+          padding-top: 12px;
+          margin-top: 8px;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          text-align: center;
+        }
+      }
+    }
+  }
+}

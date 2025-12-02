@@ -1,0 +1,114 @@
+/* カード */
+.card {
+  background-color: var(--bg-white);
+  border: none;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  .cardHeader {
+    margin-bottom: 16px;
+  }
+
+  .cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    /* アバターセクション */
+    .avatarSection {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 8px;
+
+      .avatarWrapper {
+        position: relative;
+        display: inline-block;
+
+        .avatarImage {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .avatarFallback {
+          background-color: var(--color-primary);
+          color: var(--color-text-white);
+          font-weight: 600;
+          font-size: 1.5rem;
+        }
+
+        .cameraButton {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 28px;
+          height: 28px;
+          background-color: var(--color-primary);
+          color: var(--color-text-white);
+          border: none;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          transition: opacity 0.2s;
+
+          &:hover {
+            opacity: 0.8;
+          }
+
+          &:active {
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+
+    /* 入力セクション */
+    .inputSection {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .input {
+        width: 100%;
+      }
+
+      .usernameInputWrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .atSymbol {
+          color: var(--color-text-black);
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .usernameInput {
+          flex: 1;
+        }
+      }
+
+      .helperText {
+        font-size: 12px;
+        color: var(--color-text-black);
+        opacity: 0.6;
+        margin-top: -4px;
+      }
+    }
+
+    /* 保存ボタン */
+    .saveButtonWrapper {
+      margin-top: 8px;
+    }
+  }
+
+  /* フォーム */
+  .form {
+    width: 100%;
+  }
+}
