@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-
 import { SimpleLayout } from '~/components/Layouts/SimpleLayout'
 import { CreateBoardContainer } from '~/features/board/components/CreateBoardContainer'
 
