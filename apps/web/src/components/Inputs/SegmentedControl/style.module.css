@@ -1,0 +1,14 @@
+.root {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.control {
+  padding: 2px 4px;
+}
+
+.label {
+  padding-block: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
