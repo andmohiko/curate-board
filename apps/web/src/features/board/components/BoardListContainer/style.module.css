@@ -1,0 +1,196 @@
+/* コンテナ */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-white);
+
+  .content {
+    width: 100%;
+    max-width: 500px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--color-text-black);
+        margin: 0;
+      }
+
+      .settingsButton {
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.25rem;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: rgba(37, 37, 72, 0.05);
+        }
+
+        .settingsIcon {
+          width: 20px;
+          height: 20px;
+          color: var(--color-text-black);
+        }
+      }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+
+      .gridItem {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+
+        .newBoardCard {
+          border: 2px dashed rgba(37, 37, 72, 0.4);
+          border-radius: 0.5rem;
+          background-color: var(--bg-white);
+          transition: all 0.2s;
+          height: 100%;
+          min-height: 140px;
+
+          &:hover {
+            border-color: var(--color-primary);
+            background-color: rgba(37, 37, 72, 0.05);
+          }
+
+          .newBoardContent {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-height: 140px;
+
+            .newBoardIcon {
+              width: 48px;
+              height: 48px;
+              border-radius: 50%;
+              background-color: rgba(37, 37, 72, 0.1);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-bottom: 0.5rem;
+
+              .plusIcon {
+                width: 24px;
+                height: 24px;
+                color: var(--color-primary);
+              }
+            }
+
+            .newBoardText {
+              font-size: 0.875rem;
+              font-weight: 500;
+              color: var(--color-primary);
+            }
+          }
+        }
+
+        .boardCard {
+          border: none;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          border-radius: 0.5rem;
+          background-color: var(--bg-white);
+          transition: box-shadow 0.2s;
+          height: 100%;
+          min-height: 140px;
+
+          &:hover {
+            box-shadow:
+              0 4px 6px -1px rgba(0, 0, 0, 0.2),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          }
+
+          .boardContent {
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 140px;
+
+            .previewGrid {
+              flex: 1;
+              background-color: rgba(37, 37, 72, 0.1);
+              border-radius: 0.5rem;
+              display: grid;
+              grid-template-columns: repeat(3, minmax(0, 1fr));
+              gap: 2px;
+              padding: 6px;
+              margin-bottom: 0.5rem;
+
+              .previewItem {
+                background-color: rgba(37, 37, 72, 0.2);
+                border-radius: 0.25rem;
+                font-size: 7px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--color-primary);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding: 2px;
+              }
+            }
+
+            .boardInfo {
+              display: flex;
+              flex-direction: column;
+              gap: 0.25rem;
+
+              .boardTitle {
+                font-weight: 500;
+                font-size: 0.875rem;
+                color: var(--color-text-black);
+                margin: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+
+              .boardDate {
+                font-size: 10px;
+                color: var(--color-text-black);
+                opacity: 0.7;
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .emptyMessage {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--color-text-black);
+      opacity: 0.7;
+      margin-top: 2rem;
+      margin-bottom: 0;
+    }
+  }
+}

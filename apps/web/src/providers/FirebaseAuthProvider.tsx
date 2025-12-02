@@ -97,10 +97,10 @@ const FirebaseAuthProvider = ({
           const email = userData.email!
           await createUserOperation(uid, {
             createdAt: serverTimestamp,
-            displayName: '',
+            displayName: '未設定',
             email,
             profileImageUrl: '',
-            username: '',
+            username: uid,
             updatedAt: serverTimestamp,
           })
         }
