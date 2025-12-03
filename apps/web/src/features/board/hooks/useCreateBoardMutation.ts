@@ -46,10 +46,7 @@ export const useCreateBoardMutation = (): [
         await createBoardOperation(createBoardDto)
         showSuccessToast('ボードを作成しました')
       } catch (e) {
-        const errorMsg = errorMessage(e)
-        setError(errorMsg)
-        showErrorToast('ボードの作成に失敗しました', '再度お試しください')
-        throw e
+        throw new Error(errorMessage(e))
       } finally {
         setIsLoading(false)
       }

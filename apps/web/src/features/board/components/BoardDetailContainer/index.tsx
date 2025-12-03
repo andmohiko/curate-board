@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { FiEdit } from 'react-icons/fi'
 import { LoadingAnimation } from '~/components/Base/Loading'
-import { IconButton } from '~/components/Buttons/IconButton'
+import { BasicButton } from '~/components/Buttons/BasicButton'
 import { ShareButton } from '~/components/Buttons/ShareButton'
 import { LabelText } from '~/components/Typography/LabelText'
 import { ParagraphText } from '~/components/Typography/ParagraphText'
@@ -76,23 +76,11 @@ export const BoardDetailContainer = ({ boardId }: Props): React.ReactNode => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        {/* ボードタイトル */}
-        <div className={styles.titleSection}>
-          <div />
-          <LabelText size="lg" weight="bold">
-            {board.title}
-          </LabelText>
-          <IconButton
-            icon={<FiEdit size={18} />}
-            onClick={() => push(`/boards/${board.boardId}/edit`)}
-            importance="tertiary"
-          />
-        </div>
-
         {/* ボードグリッド */}
         <div className={styles.boardSection}>
           <BoardGrid
             items={boardItems}
+            title={board.title}
             styleBackgroundColor={board.styleBackgroundColor}
             styleTextColor={board.styleTextColor}
             backgroundImageUrl={board.backgroundImageUrl}
@@ -104,6 +92,13 @@ export const BoardDetailContainer = ({ boardId }: Props): React.ReactNode => {
           body={`これが私の${board.title}ボードです！`}
           url={`${process.env.NEXT_PUBLIC_APP_URL}/boards/${board.boardId}`}
         />
+        <BasicButton
+          importance="secondary"
+          leftSection={<FiEdit size={18} />}
+          onClick={() => push(`/boards/${board.boardId}/edit`)}
+        >
+          編集
+        </BasicButton>
 
         {/* 作成者情報 */}
         <BoardAuthorInfo user={user} createdAt={board.createdAt} />

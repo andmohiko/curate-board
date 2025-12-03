@@ -7,6 +7,8 @@ type Props = {
   styleBackgroundColor: string
   styleTextColor: string
   backgroundImageUrl?: string
+  title?: string
+  onTitleChange?: (title: string) => void
   onItemChange?: (index: number, value: string) => void
   onLabelChange?: (index: number, label: string) => void
   readOnly?: boolean
@@ -17,6 +19,8 @@ export const BoardGrid = ({
   styleBackgroundColor,
   styleTextColor,
   backgroundImageUrl,
+  title,
+  onTitleChange,
   onItemChange,
   onLabelChange,
   readOnly = false,
@@ -34,6 +38,24 @@ export const BoardGrid = ({
       }}
     >
       {backgroundImageUrl && <div className={styles.overlay} />}
+      {title !== undefined && (
+        <div className={styles.titleContainer}>
+          {readOnly ? (
+            <h2 className={styles.title} style={{ color: styleTextColor }}>
+              {title || ''}
+            </h2>
+          ) : (
+            <input
+              type="text"
+              className={styles.titleInput}
+              value={title || ''}
+              onChange={(e) => onTitleChange?.(e.target.value)}
+              placeholder="タイトルを入力"
+              style={{ color: styleTextColor }}
+            />
+          )}
+        </div>
+      )}
       <div className={styles.grid}>
         {items.map((item, index) => (
           <BoardCell

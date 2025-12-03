@@ -13,6 +13,7 @@ import {
 } from '~/features/board/types'
 import { useToast } from '~/hooks/useToast'
 import { errorMessage } from '~/utils/errorMessage'
+import { useUpdateBoardMutation } from '../../hooks/useUpdateBoardMutation'
 import { EditHeader } from '../EditHeader'
 import styles from './style.module.css'
 
@@ -54,8 +55,9 @@ type Props = {
 
 export const BoardEditor = ({ defaultValues }: Props) => {
   const [activeTab, setActiveTab] = useState<'edit' | 'customize'>('edit')
-  const { showErrorToast, showSuccessToast } = useToast()
+  const { showErrorToast } = useToast()
   const [createBoard] = useCreateBoardMutation()
+  const [updateBoard] = useUpdateBoardMutation()
   const { watch, control, handleSubmit, setValue } =
     useForm<EditBoardInputType>({
       resolver: zodResolver(editBoardSchema),
@@ -83,23 +85,16 @@ export const BoardEditor = ({ defaultValues }: Props) => {
 
   const onSubmit = async (data: EditBoardInputType) => {
     try {
-      await createBoard(data)
-      showSuccessToast('ボードを作成しました')
+      if (defaultValues) {
+        await updateBoard(defaultValues.boardId, data)
+      } else {
+        await createBoard(data)
+      }
     } catch (e) {
       showErrorToast('ボードの保存に失敗しました', errorMessage(e))
     }
   }
 
-  // const handleSave = async () => {
-  //   await createBoard({
-  //     backgroundImageUrl:
-  //       'https://andmohiko.dev/assets/posts/articles/20251012/images/jungle_shisha.jpg',
-  //     items: defaultTemplate,
-  //     title: '最強ボード',
-  //     styleBackgroundColor: '#fdf4ff',
-  //     styleTextColor: '#ffff00',
-  //   })
-  // }
   return (
     <div className={styles.boardEditor}>
       <EditHeader title="ボード編集" onSave={handleSubmit(onSubmit)} />
@@ -118,25 +113,33 @@ export const BoardEditor = ({ defaultValues }: Props) => {
           control={control}
           name="items"
           render={({ field }) => (
-            <BoardGrid
-              items={field.value}
-              styleBackgroundColor={styleBackgroundColor ?? '#ffffff'}
-              styleTextColor={styleTextColor ?? '#323232'}
-              backgroundImageUrl={backgroundImageUrl ?? undefined}
-              onItemChange={(index, value) => {
-                field.onChange(
-                  field.value.map((item, i) =>
-                    i === index ? { ...item, value } : item,
-                  ),
-                )
-              }}
-              onLabelChange={(index, label) => {
-                field.onChange(
-                  field.value.map((item, i) =>
-                    i === index ? { ...item, label } : item,
-                  ),
-                )
-              }}
+            <Controller
+              control={control}
+              name="title"
+              render={({ field: titleField }) => (
+                <BoardGrid
+                  items={field.value}
+                  styleBackgroundColor={styleBackgroundColor ?? '#ffffff'}
+                  styleTextColor={styleTextColor ?? '#323232'}
+                  backgroundImageUrl={backgroundImageUrl ?? undefined}
+                  title={titleField.value}
+                  onTitleChange={(value) => titleField.onChange(value)}
+                  onItemChange={(index, value) => {
+                    field.onChange(
+                      field.value.map((item, i) =>
+                        i === index ? { ...item, value } : item,
+                      ),
+                    )
+                  }}
+                  onLabelChange={(index, label) => {
+                    field.onChange(
+                      field.value.map((item, i) =>
+                        i === index ? { ...item, label } : item,
+                      ),
+                    )
+                  }}
+                />
+              )}
             />
           )}
         />

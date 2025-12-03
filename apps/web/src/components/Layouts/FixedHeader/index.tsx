@@ -13,9 +13,9 @@ export const FixedHeader = ({
   title,
   isShowBackButton = false,
 }: Props): React.ReactNode => {
-  const { pathname, push } = useRouter()
+  const { pathname, back, push } = useRouter()
 
-  const back = () => {
+  const handleBack = () => {
     // 設定画面いるときはマイページに戻る
     if (pathname === '/settings') {
       push('/boards')
@@ -27,7 +27,7 @@ export const FixedHeader = ({
       return
     }
 
-    push('/')
+    back()
   }
 
   const isShowSettingsButton = pathname === '/boards'
@@ -36,7 +36,7 @@ export const FixedHeader = ({
     <header className={styles.fixedHeader}>
       {isShowBackButton ? (
         <div className={styles.leftIcon}>
-          <IconButton icon={<FaChevronLeft size={24} />} onClick={back} />
+          <IconButton icon={<FaChevronLeft size={24} />} onClick={handleBack} />
         </div>
       ) : (
         <div />
