@@ -1,4 +1,5 @@
 import type { CreateBoardDto } from '@curate/common'
+import { useRouter } from 'next/router'
 import { useCallback, useState } from 'react'
 import type { EditBoardInputType } from '~/features/board/types'
 import { useToast } from '~/hooks/useToast'
@@ -19,6 +20,7 @@ export const useCreateBoardMutation = (): [
 ] => {
   const { uid } = useFirebaseAuthContext()
   const { showErrorToast, showSuccessToast } = useToast()
+  const { push } = useRouter()
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -43,15 +45,16 @@ export const useCreateBoardMutation = (): [
           updatedAt: serverTimestamp,
           userId: uid,
         }
-        await createBoardOperation(createBoardDto)
+        const boardId = await createBoardOperation(createBoardDto)
         showSuccessToast('ボードを作成しました')
+        push(`/boards/${boardId}`)
       } catch (e) {
         throw new Error(errorMessage(e))
       } finally {
         setIsLoading(false)
       }
     },
-    [uid, showErrorToast, showSuccessToast],
+    [uid, showErrorToast, showSuccessToast, push],
   )
 
   return [createBoard, error, isLoading]

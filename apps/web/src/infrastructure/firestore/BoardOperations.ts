@@ -141,8 +141,9 @@ export const subscribeBoardsByUserIdOperation = (
  */
 export const createBoardOperation = async (
   dto: CreateBoardDto,
-): Promise<void> => {
-  await addDoc(collection(db, boardCollection), dto)
+): Promise<BoardId> => {
+  const docRef = await addDoc(collection(db, boardCollection), dto)
+  return docRef.id as BoardId
 }
 
 /**

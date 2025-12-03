@@ -6,6 +6,7 @@ import { SegmentedControl } from '~/components/Inputs/SegmentedControl'
 import { BoardGrid } from '~/features/board/components/BoardGrid'
 import { CustomizePanel } from '~/features/board/components/CustomizePanel'
 import { useCreateBoardMutation } from '~/features/board/hooks/useCreateBoardMutation'
+import { useUpdateBoardMutation } from '~/features/board/hooks/useUpdateBoardMutation'
 import {
   type BoardItem,
   type EditBoardInputType,
@@ -13,7 +14,6 @@ import {
 } from '~/features/board/types'
 import { useToast } from '~/hooks/useToast'
 import { errorMessage } from '~/utils/errorMessage'
-import { useUpdateBoardMutation } from '../../hooks/useUpdateBoardMutation'
 import { EditHeader } from '../EditHeader'
 import styles from './style.module.css'
 
