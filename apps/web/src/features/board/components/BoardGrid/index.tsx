@@ -37,7 +37,7 @@ export const BoardGrid = ({
       <div className={styles.grid}>
         {items.map((item, index) => (
           <BoardCell
-            key={item.label}
+            key={index.toString()}
             item={item}
             textColor={styleTextColor}
             onValueChange={(value) => onItemChange?.(index, value)}

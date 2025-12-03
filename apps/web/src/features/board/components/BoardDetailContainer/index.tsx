@@ -1,7 +1,10 @@
 import type { User } from '@curate/common'
 import dayjs from 'dayjs'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { FiEdit } from 'react-icons/fi'
 import { LoadingAnimation } from '~/components/Base/Loading'
+import { IconButton } from '~/components/Buttons/IconButton'
 import { ShareButton } from '~/components/Buttons/ShareButton'
 import { LabelText } from '~/components/Typography/LabelText'
 import { ParagraphText } from '~/components/Typography/ParagraphText'
@@ -26,6 +29,7 @@ type Props = {
  * @param boardId - 表示するボードのID
  */
 export const BoardDetailContainer = ({ boardId }: Props): React.ReactNode => {
+  const { push } = useRouter()
   const [board, boardError, isLoadingBoard] = useBoard(boardId)
   const [user, userError, isLoadingUser] = useUser(board?.userId ?? null)
 
@@ -74,9 +78,15 @@ export const BoardDetailContainer = ({ boardId }: Props): React.ReactNode => {
       <div className={styles.content}>
         {/* ボードタイトル */}
         <div className={styles.titleSection}>
+          <div />
           <LabelText size="lg" weight="bold">
             {board.title}
           </LabelText>
+          <IconButton
+            icon={<FiEdit size={18} />}
+            onClick={() => push(`/boards/${board.boardId}/edit`)}
+            importance="tertiary"
+          />
         </div>
 
         {/* ボードグリッド */}

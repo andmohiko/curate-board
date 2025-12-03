@@ -22,6 +22,8 @@ export const BoardCell = ({
   const [isEditing, setIsEditing] = useState(false)
   const [isEditingLabel, setIsEditingLabel] = useState(false)
   const cellRef = useRef<HTMLDivElement>(null)
+  const labelInputRef = useRef<HTMLInputElement>(null)
+  const valueInputRef = useRef<HTMLInputElement>(null)
 
   /**
    * コンポーネント外をクリックしたときに編集モードを終了する
@@ -43,6 +45,24 @@ export const BoardCell = ({
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [isEditing, isEditingLabel])
+
+  /**
+   * 編集モードになったときにinputにフォーカスを設定する
+   */
+  useEffect(() => {
+    if (isEditingLabel && labelInputRef.current) {
+      labelInputRef.current.focus()
+    }
+  }, [isEditingLabel])
+
+  /**
+   * 編集モードになったときにinputにフォーカスを設定する
+   */
+  useEffect(() => {
+    if (isEditing && valueInputRef.current) {
+      valueInputRef.current.focus()
+    }
+  }, [isEditing])
 
   return (
     <div
@@ -67,10 +87,16 @@ export const BoardCell = ({
       >
         {isEditingLabel ? (
           <input
+            ref={labelInputRef}
             className={styles.labelInput}
             type="text"
             value={item.label}
             onChange={(e) => onLabelChange(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                setIsEditingLabel(false)
+              }
+            }}
           />
         ) : (
           <span
@@ -102,10 +128,16 @@ export const BoardCell = ({
       >
         {isEditing ? (
           <input
+            ref={valueInputRef}
             className={styles.valueInput}
             type="text"
             value={item.value}
             onChange={(e) => onValueChange(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                setIsEditing(false)
+              }
+            }}
           />
         ) : (
           <span
