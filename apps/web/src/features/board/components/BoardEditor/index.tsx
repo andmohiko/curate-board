@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { SegmentedControl } from '~/components/Inputs/SegmentedControl'
 import { BoardGrid } from '~/features/board/components/BoardGrid'
+import { CustomizePanel } from '~/features/board/components/CustomizePanel'
 import { useCreateBoardMutation } from '~/features/board/hooks/useCreateBoardMutation'
 import {
   type BoardItem,
@@ -55,25 +56,26 @@ export const BoardEditor = ({ defaultValues }: Props) => {
   const [activeTab, setActiveTab] = useState<'edit' | 'customize'>('edit')
   const { showErrorToast, showSuccessToast } = useToast()
   const [createBoard] = useCreateBoardMutation()
-  const { watch, control, handleSubmit } = useForm<EditBoardInputType>({
-    resolver: zodResolver(editBoardSchema),
-    defaultValues: defaultValues
-      ? {
-          backgroundImageUrl: defaultValues?.backgroundImageUrl,
-          items: defaultValues?.items,
-          title: defaultValues?.title,
-          styleBackgroundColor: defaultValues?.styleBackgroundColor,
-          styleTextColor: defaultValues?.styleTextColor,
-        }
-      : {
-          backgroundImageUrl: '',
-          items: defaultTemplate,
-          title: '',
-          styleBackgroundColor: '#ffffff',
-          styleTextColor: '#323232',
-        },
-    mode: 'all',
-  })
+  const { watch, control, handleSubmit, setValue } =
+    useForm<EditBoardInputType>({
+      resolver: zodResolver(editBoardSchema),
+      defaultValues: defaultValues
+        ? {
+            backgroundImageUrl: defaultValues?.backgroundImageUrl,
+            items: defaultValues?.items,
+            title: defaultValues?.title,
+            styleBackgroundColor: defaultValues?.styleBackgroundColor,
+            styleTextColor: defaultValues?.styleTextColor,
+          }
+        : {
+            backgroundImageUrl: '',
+            items: defaultTemplate,
+            title: '',
+            styleBackgroundColor: '#ffffff',
+            styleTextColor: '#323232',
+          },
+      mode: 'all',
+    })
 
   const styleBackgroundColor = watch('styleBackgroundColor')
   const styleTextColor = watch('styleTextColor')
@@ -139,7 +141,22 @@ export const BoardEditor = ({ defaultValues }: Props) => {
           )}
         />
       ) : (
-        <div>customize</div>
+        <CustomizePanel
+          styleBackgroundColor={styleBackgroundColor ?? '#ffffff'}
+          styleTextColor={styleTextColor ?? '#323232'}
+          backgroundImageUrl={backgroundImageUrl}
+          onCustomize={(updates) => {
+            if (updates.styleBackgroundColor !== undefined) {
+              setValue('styleBackgroundColor', updates.styleBackgroundColor)
+            }
+            if (updates.styleTextColor !== undefined) {
+              setValue('styleTextColor', updates.styleTextColor)
+            }
+            if (updates.backgroundImageUrl !== undefined) {
+              setValue('backgroundImageUrl', updates.backgroundImageUrl)
+            }
+          }}
+        />
       )}
     </div>
   )

@@ -1,0 +1,119 @@
+/**
+ * CustomizePanelコンポーネントのスタイル
+ */
+
+.customizePanel {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px 8px;
+
+  .header {
+    text-align: center;
+    color: var(--color-text-black);
+    font-size: 14px;
+    opacity: 0.7;
+  }
+
+  .card {
+    background-color: var(--color-bg-white);
+    border-radius: 12px;
+    border: 1px solid var(--color-border-gray0);
+    overflow: hidden;
+
+    .cardHeader {
+      padding: 16px;
+      border-bottom: 1px solid var(--color-border-gray0);
+
+      .cardTitle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .icon {
+          width: 20px;
+          height: 20px;
+          color: var(--color-text-black);
+        }
+      }
+    }
+
+    .cardContent {
+      padding: 16px;
+
+      /* カスタムカラー */
+      .customColorGrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      /* 背景画像 */
+      .imageInputGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .urlInput {
+          width: 100%;
+          padding: 8px 12px;
+          border: 1px solid var(--color-border-gray0);
+          border-radius: 8px;
+          font-size: 14px;
+          color: var(--color-text-black);
+          background-color: var(--color-bg-white);
+
+          &:focus {
+            outline: none;
+            border-color: var(--color-primary);
+          }
+
+          &::placeholder {
+            color: var(--color-text-black);
+            opacity: 0.5;
+          }
+        }
+
+        .removeButton {
+          font-size: 14px;
+          color: #dc2626;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          text-decoration: underline;
+          text-align: left;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+
+      /* プレビュー */
+      .preview {
+        border-radius: 12px;
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        min-height: 200px;
+      }
+    }
+  }
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .customizePanel {
+    .card {
+      .cardContent {
+        .customColorGrid {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+}
