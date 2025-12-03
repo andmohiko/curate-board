@@ -3,15 +3,20 @@ import dayjs from 'dayjs'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { FiEdit } from 'react-icons/fi'
+import { IoMdTrash } from 'react-icons/io'
+import { FlexBox } from '~/components/Base/FlexBox'
 import { LoadingAnimation } from '~/components/Base/Loading'
 import { BasicButton } from '~/components/Buttons/BasicButton'
+import { DeleteButton } from '~/components/Buttons/DeleteButton'
 import { ShareButton } from '~/components/Buttons/ShareButton'
 import { LabelText } from '~/components/Typography/LabelText'
 import { ParagraphText } from '~/components/Typography/ParagraphText'
 import { BoardGrid } from '~/features/board/components/BoardGrid'
+import { useDeleteBoardMutation } from '~/features/board/hooks/useDeleteBoardMutation'
 import type { BoardItem } from '~/features/board/types'
 import { useBoard } from '~/hooks/useBoard'
 import { useUser } from '~/hooks/useUser'
+import { useFirebaseAuthContext } from '~/providers/FirebaseAuthProvider'
 import styles from './style.module.css'
 
 type Props = {
@@ -30,9 +35,10 @@ type Props = {
  */
 export const BoardDetailContainer = ({ boardId }: Props): React.ReactNode => {
   const { push } = useRouter()
+  const { uid } = useFirebaseAuthContext()
   const [board, boardError, isLoadingBoard] = useBoard(boardId)
   const [user, userError, isLoadingUser] = useUser(board?.userId ?? null)
-
+  const [deleteBoard] = useDeleteBoardMutation()
   const isLoading = isLoadingBoard || isLoadingUser
   const hasError = boardError || userError
 
@@ -92,16 +98,28 @@ export const BoardDetailContainer = ({ boardId }: Props): React.ReactNode => {
           body={`これが私の${board.title}ボードです！`}
           url={`${process.env.NEXT_PUBLIC_APP_URL}/boards/${board.boardId}`}
         />
-        <BasicButton
-          importance="secondary"
-          leftSection={<FiEdit size={18} />}
-          onClick={() => push(`/boards/${board.boardId}/edit`)}
-        >
-          編集
-        </BasicButton>
-
         {/* 作成者情報 */}
         <BoardAuthorInfo user={user} createdAt={board.createdAt} />
+
+        {/* 編集削除 */}
+        {uid === board.userId && (
+          <FlexBox align="stretch" gap={8}>
+            <BasicButton
+              importance="secondary"
+              leftSection={<FiEdit size={18} />}
+              onClick={() => push(`/boards/${board.boardId}/edit`)}
+            >
+              編集
+            </BasicButton>
+            <DeleteButton
+              importance="tertiary"
+              leftSection={<IoMdTrash size={18} />}
+              onClick={() => deleteBoard(board.boardId)}
+            >
+              削除
+            </DeleteButton>
+          </FlexBox>
+        )}
       </div>
     </div>
   )
