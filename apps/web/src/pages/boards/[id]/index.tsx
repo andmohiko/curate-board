@@ -26,9 +26,7 @@ const BoardDetailPage: NextPage<Props> = ({ board }) => {
 
   // 動的OGP画像URLを生成
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://curationl.ink'
-  const ogImageUrl = boardId
-    ? `${appUrl}/api/og/board/${boardId}`
-    : `${appUrl}/ogp.png`
+  const ogImageUrl = `${appUrl}/ogp.png`
 
   return (
     <PublicLayout title="きゅれりん" isShowBackButton={board?.userId === uid}>
