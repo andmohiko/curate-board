@@ -18,16 +18,16 @@ export const PageHead = (): React.ReactElement => (
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" />
     {/* OGPタグ */}
-    <meta property="og:title" content="価値観ボード" />
+    <meta property="og:title" content="キュレーションリンク" />
     <meta
       property="og:description"
       content="あなたの「好き」をカタチにしてシェアしよう"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="価値観ボード" />
+    <meta property="og:site_name" content="キュレーションリンク" />
     {/* Twitter Card */}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="価値観ボード" />
+    <meta name="twitter:title" content="キュレーションリンク" />
     <meta
       name="twitter:description"
       content="あなたの「好き」をカタチにしてシェアしよう"

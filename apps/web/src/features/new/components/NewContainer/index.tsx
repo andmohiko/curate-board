@@ -28,9 +28,9 @@ export const NewContainer = (): React.ReactNode => {
               stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
-              aria-label="価値観ボードロゴ"
+              aria-label="キュレーションリンクロゴ"
             >
-              <title>価値観ボードロゴ</title>
+              <title>キュレーションリンクロゴ</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -39,7 +39,7 @@ export const NewContainer = (): React.ReactNode => {
               />
             </svg>
           </div>
-          <h1 className={styles.title}>価値観ボード</h1>
+          <h1 className={styles.title}>キュレーションリンク</h1>
           <p className={styles.description}>
             あなたの「好き」をカタチにして
             <br />

@@ -12,7 +12,7 @@ type Props = {
 
 export const PublicLayout = ({
   children,
-  title = 'キュレーションボード',
+  title = 'キュレーションリンク',
   isShowBackButton = false,
 }: Props): ReactElement => {
   const { isLoading } = useLoadingContext()
