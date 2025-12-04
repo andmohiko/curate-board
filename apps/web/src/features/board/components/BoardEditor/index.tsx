@@ -51,33 +51,40 @@ const defaultTemplate: BoardItem[] = [
 
 type Props = {
   defaultValues?: Board
+  defaultItems?: BoardItem[] | null
+  onBack?: () => void
 }
 
-export const BoardEditor = ({ defaultValues }: Props) => {
+export const BoardEditor = ({ defaultValues, defaultItems, onBack }: Props) => {
   const [activeTab, setActiveTab] = useState<'edit' | 'customize'>('edit')
   const { showErrorToast } = useToast()
   const [createBoard] = useCreateBoardMutation()
   const [updateBoard] = useUpdateBoardMutation()
-  const { watch, control, handleSubmit, setValue } =
-    useForm<EditBoardInputType>({
-      resolver: zodResolver(editBoardSchema),
-      defaultValues: defaultValues
-        ? {
-            backgroundImageUrl: defaultValues?.backgroundImageUrl,
-            items: defaultValues?.items,
-            title: defaultValues?.title,
-            styleBackgroundColor: defaultValues?.styleBackgroundColor,
-            styleTextColor: defaultValues?.styleTextColor,
-          }
-        : {
-            backgroundImageUrl: '',
-            items: defaultTemplate,
-            title: '',
-            styleBackgroundColor: '#ffffff',
-            styleTextColor: '#323232',
-          },
-      mode: 'all',
-    })
+  const {
+    watch,
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<EditBoardInputType>({
+    resolver: zodResolver(editBoardSchema),
+    defaultValues: defaultValues
+      ? {
+          backgroundImageUrl: defaultValues?.backgroundImageUrl,
+          items: defaultValues?.items,
+          title: defaultValues?.title,
+          styleBackgroundColor: defaultValues?.styleBackgroundColor,
+          styleTextColor: defaultValues?.styleTextColor,
+        }
+      : {
+          backgroundImageUrl: '',
+          items: defaultItems ?? defaultTemplate,
+          title: '',
+          styleBackgroundColor: '#ffffff',
+          styleTextColor: '#323232',
+        },
+    mode: 'all',
+  })
 
   const styleBackgroundColor = watch('styleBackgroundColor')
   const styleTextColor = watch('styleTextColor')
@@ -96,71 +103,79 @@ export const BoardEditor = ({ defaultValues }: Props) => {
   }
 
   return (
-    <div className={styles.boardEditor}>
-      <EditHeader title="ボード編集" onSave={handleSubmit(onSubmit)} />
-      <SegmentedControl
-        data={[
-          { label: '編集', value: 'edit' },
-          { label: 'カスタマイズ', value: 'customize' },
-        ]}
-        value={activeTab}
-        onChange={(value) => {
-          setActiveTab(value as 'edit' | 'customize')
-        }}
+    <>
+      <EditHeader
+        title="ボード編集"
+        onSave={handleSubmit(onSubmit)}
+        onBack={onBack}
       />
-      {activeTab === 'edit' ? (
-        <Controller
-          control={control}
-          name="items"
-          render={({ field }) => (
-            <Controller
-              control={control}
-              name="title"
-              render={({ field: titleField }) => (
-                <BoardGrid
-                  items={field.value}
-                  styleBackgroundColor={styleBackgroundColor ?? '#ffffff'}
-                  styleTextColor={styleTextColor ?? '#323232'}
-                  backgroundImageUrl={backgroundImageUrl ?? undefined}
-                  title={titleField.value}
-                  onTitleChange={(value) => titleField.onChange(value)}
-                  onItemChange={(index, value) => {
-                    field.onChange(
-                      field.value.map((item, i) =>
-                        i === index ? { ...item, value } : item,
-                      ),
-                    )
-                  }}
-                  onLabelChange={(index, label) => {
-                    field.onChange(
-                      field.value.map((item, i) =>
-                        i === index ? { ...item, label } : item,
-                      ),
-                    )
-                  }}
-                />
-              )}
-            />
-          )}
-        />
-      ) : (
-        <CustomizePanel
-          styleBackgroundColor={styleBackgroundColor ?? '#ffffff'}
-          styleTextColor={styleTextColor ?? '#323232'}
-          backgroundImageUrl={backgroundImageUrl}
-          onCustomize={(updates) => {
-            if (updates.styleBackgroundColor !== undefined) {
-              setValue('styleBackgroundColor', updates.styleBackgroundColor)
-            }
-            if (updates.styleTextColor !== undefined) {
-              setValue('styleTextColor', updates.styleTextColor)
-            }
-            if (updates.backgroundImageUrl !== undefined) {
-              setValue('backgroundImageUrl', updates.backgroundImageUrl)
-            }
+
+      <div className={styles.boardEditor}>
+        <SegmentedControl
+          data={[
+            { label: '編集', value: 'edit' },
+            { label: 'カスタマイズ', value: 'customize' },
+          ]}
+          value={activeTab}
+          onChange={(value) => {
+            setActiveTab(value as 'edit' | 'customize')
           }}
         />
-      )}
-    </div>
+        {activeTab === 'edit' ? (
+          <Controller
+            control={control}
+            name="items"
+            render={({ field }) => (
+              <Controller
+                control={control}
+                name="title"
+                render={({ field: titleField }) => (
+                  <BoardGrid
+                    items={field.value}
+                    styleBackgroundColor={styleBackgroundColor ?? '#ffffff'}
+                    styleTextColor={styleTextColor ?? '#323232'}
+                    backgroundImageUrl={backgroundImageUrl ?? undefined}
+                    title={titleField.value}
+                    onTitleChange={(value) => titleField.onChange(value)}
+                    onItemChange={(index, value) => {
+                      field.onChange(
+                        field.value.map((item, i) =>
+                          i === index ? { ...item, value } : item,
+                        ),
+                      )
+                    }}
+                    onLabelChange={(index, label) => {
+                      field.onChange(
+                        field.value.map((item, i) =>
+                          i === index ? { ...item, label } : item,
+                        ),
+                      )
+                    }}
+                    errorTitle={errors.title?.message}
+                  />
+                )}
+              />
+            )}
+          />
+        ) : (
+          <CustomizePanel
+            styleBackgroundColor={styleBackgroundColor ?? '#ffffff'}
+            styleTextColor={styleTextColor ?? '#323232'}
+            backgroundImageUrl={backgroundImageUrl}
+            onCustomize={(updates) => {
+              if (updates.styleBackgroundColor !== undefined) {
+                setValue('styleBackgroundColor', updates.styleBackgroundColor)
+              }
+              if (updates.styleTextColor !== undefined) {
+                setValue('styleTextColor', updates.styleTextColor)
+              }
+              if (updates.backgroundImageUrl !== undefined) {
+                setValue('backgroundImageUrl', updates.backgroundImageUrl)
+              }
+            }}
+          />
+        )}
+      </div>
+    </>
   )
 }

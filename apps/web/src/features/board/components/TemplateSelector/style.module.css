@@ -1,0 +1,91 @@
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading,
+.empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-border-gray0);
+  font-size: 14px;
+}
+
+.templateList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.templateCard {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid var(--color-border-gray0);
+  background-color: var(--bg-white);
+  transition: all 0.2s;
+  cursor: pointer;
+  text-align: left;
+}
+
+.templateCard:hover {
+  border-color: var(--color-primary);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.templateContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.templateIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: rgba(37, 37, 72, 0.1);
+  color: var(--color-primary);
+  transition: all 0.2s;
+}
+
+.templateCard:hover .templateIcon {
+  background-color: var(--color-primary);
+  color: var(--color-text-white);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.templateInfo {
+  flex: 1;
+}
+
+.templateTitle {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-text-black);
+  margin-bottom: 4px;
+}
+
+.templateDescription {
+  font-size: 12px;
+  color: var(--color-border-gray0);
+}

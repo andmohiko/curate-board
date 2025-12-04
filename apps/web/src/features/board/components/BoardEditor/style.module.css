@@ -1,6 +1,7 @@
 .boardEditor {
-  padding: 0 8px;
+  padding: 16px 8px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background-color: var(--color-gray100);
 }

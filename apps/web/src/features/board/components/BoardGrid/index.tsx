@@ -1,3 +1,5 @@
+import { FlexBox } from '~/components/Base/FlexBox'
+import { ParagraphText } from '~/components/Typography/ParagraphText'
 import { BoardCell } from '~/features/board/components/BoardCell'
 import type { BoardItem } from '~/features/board/types'
 import styles from './style.module.css'
@@ -12,6 +14,7 @@ type Props = {
   onItemChange?: (index: number, value: string) => void
   onLabelChange?: (index: number, label: string) => void
   readOnly?: boolean
+  errorTitle?: string
 }
 
 export const BoardGrid = ({
@@ -24,6 +27,7 @@ export const BoardGrid = ({
   onItemChange,
   onLabelChange,
   readOnly = false,
+  errorTitle,
 }: Props): React.ReactNode => {
   return (
     <div
@@ -45,14 +49,21 @@ export const BoardGrid = ({
               {title || ''}
             </h2>
           ) : (
-            <input
-              type="text"
-              className={styles.titleInput}
-              value={title || ''}
-              onChange={(e) => onTitleChange?.(e.target.value)}
-              placeholder="タイトルを入力"
-              style={{ color: styleTextColor }}
-            />
+            <FlexBox>
+              <input
+                type="text"
+                className={styles.titleInput}
+                value={title || ''}
+                onChange={(e) => onTitleChange?.(e.target.value)}
+                placeholder="タイトルを入力"
+                style={{ color: styleTextColor }}
+              />
+              {errorTitle && (
+                <ParagraphText size="xs" color="red">
+                  {errorTitle}
+                </ParagraphText>
+              )}
+            </FlexBox>
           )}
         </div>
       )}

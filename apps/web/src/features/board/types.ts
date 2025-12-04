@@ -17,7 +17,7 @@ export const editBoardSchema = z.object({
   ),
   styleBackgroundColor: z.string().optional(),
   styleTextColor: z.string().optional(),
-  title: z.string(),
+  title: z.string().min(1, { message: 'タイトルは必須項目です' }),
 })
 
 export type EditBoardInputType = z.infer<typeof editBoardSchema>

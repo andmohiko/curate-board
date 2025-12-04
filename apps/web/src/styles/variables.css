@@ -12,6 +12,18 @@
   /* Backgrounds */
   --bg-white: #ffffff;
 
+  /* Gray shades */
+  --color-gray50: #f7fafc;
+  --color-gray100: #edf2f7;
+  --color-gray200: #e2e8f0;
+  --color-gray300: #cbd5e0;
+  --color-gray400: #a0aec0;
+  --color-gray500: #718096;
+  --color-gray600: #4a5568;
+  --color-gray700: #2d3748;
+  --color-gray800: #1a202c;
+  --color-gray900: #171923;
+
   /* Border Colors */
   --color-border-gray0: #aeb7ce;
 
