@@ -8,7 +8,9 @@ import Head from 'next/head'
  */
 export const PageHead = (): React.ReactElement => (
   <Head>
-    <title>価値観ボード | あなたの「好き」をカタチにしてシェアしよう</title>
+    <title>
+      キュレーションリンク | あなたの「好き」をカタチにしてシェアしよう
+    </title>
     <meta
       name="description"
       content="あなたの好きなもの（アニメ、ゲーム、食べ物、音楽など）を7行3列のボード形式で整理し、視覚的に表現・共有できるサービス"
