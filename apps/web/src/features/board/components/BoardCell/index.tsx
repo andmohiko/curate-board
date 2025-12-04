@@ -108,7 +108,11 @@ export const BoardCell = ({
                   : textColor,
             }}
           >
-            {item.label}
+            {item.label.length > 0 || readOnly ? (
+              item.label
+            ) : (
+              <MdOutlineModeEditOutline size={16} color={textColor} />
+            )}
           </span>
         )}
       </button>
