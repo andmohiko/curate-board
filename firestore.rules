@@ -33,7 +33,7 @@ service cloud.firestore {
       return requestData.size() == 8
         && 'backgroundImageUrl' in requestData && requestData.backgroundImageUrl is string
         && 'createdAt' in requestData && requestData.createdAt is timestamp
-        && 'items' in requestData && requestData.items is list && requestData.items.size() == 21
+        && 'items' in requestData && requestData.items is list && (requestData.items.size() == 18 || requestData.items.size() == 21)
         && 'styleBackgroundColor' in requestData && requestData.styleBackgroundColor is string
         && 'styleTextColor' in requestData && requestData.styleTextColor is string
         && 'title' in requestData && requestData.title is string
@@ -46,7 +46,7 @@ service cloud.firestore {
       return requestData.size() == 6
         && 'createdAt' in requestData && requestData.createdAt is timestamp
         && 'createdBy' in requestData && (requestData.createdBy is string || requestData.createdBy == null)
-        && 'itemLabels' in requestData && requestData.itemLabels is list && requestData.itemLabels.size() == 21
+        && 'itemLabels' in requestData && requestData.itemLabels is list && requestData.itemLabels.size() == 18
         && 'title' in requestData && requestData.title is string
         && 'type' in requestData && requestData.type is string && requestData.type in ['official', 'custom']
         && 'updatedAt' in requestData && requestData.updatedAt is timestamp;

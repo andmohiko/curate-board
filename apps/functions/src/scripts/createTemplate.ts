@@ -56,9 +56,9 @@ const serverTimestamp = admin.firestore.FieldValue.serverTimestamp()
  * @param dto - 作成するテンプレートのDTO
  */
 const createTemplate = async (dto: CreateTemplateDto): Promise<void> => {
-  if (dto.itemLabels.length !== 21) {
+  if (dto.itemLabels.length !== 18) {
     throw new Error(
-      `itemLabelsは21個である必要があります。現在: ${dto.itemLabels.length}個`,
+      `itemLabelsは18個である必要があります。現在: ${dto.itemLabels.length}個`,
     )
   }
 

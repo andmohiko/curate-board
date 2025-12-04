@@ -27,9 +27,6 @@ export const gourmetBoardLabels = [
   '好きな居酒屋',
   '好きな朝食',
   '好きな夜食',
-  '好きな地方料理',
-  '好きな外国料理',
-  '好きな食材',
 ] as const
 
 /**
@@ -54,9 +51,6 @@ export const entertainmentBoardLabels = [
   '好きなジャンル',
   '好きな配信者',
   '好きなラジオ',
-  '好きなポッドキャスト',
-  '好きなクリエイター',
-  '好きなコンテンツ',
 ] as const
 
 /**
@@ -81,7 +75,4 @@ export const programmerBoardLabels = [
   '好きな技術ブログ',
   '好きな技術書',
   '好きなコミュニティ',
-  '好きなカンファレンス',
-  '好きなOSS',
-  '好きな技術トレンド',
 ] as const

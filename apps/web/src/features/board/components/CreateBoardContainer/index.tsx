@@ -17,9 +17,9 @@ import { TemplateSelector } from '../TemplateSelector'
 type CreateMode = 'select' | 'template' | 'custom'
 
 /**
- * 空のテンプレート（21個の空のアイテム）
+ * 空のテンプレート（18個の空のアイテム）
  */
-const emptyTemplate: BoardItem[] = Array.from({ length: 21 }, () => ({
+const emptyTemplate: BoardItem[] = Array.from({ length: 18 }, () => ({
   label: '',
   value: '',
 }))

@@ -17,7 +17,7 @@ import { errorMessage } from '~/utils/errorMessage'
 import { EditHeader } from '../EditHeader'
 import styles from './style.module.css'
 
-const _emptyTemplate: BoardItem[] = Array.from({ length: 21 }, () => ({
+const _emptyTemplate: BoardItem[] = Array.from({ length: 18 }, () => ({
   label: '',
   value: '',
 }))
@@ -44,9 +44,6 @@ const defaultTemplate: BoardItem[] = [
     label: '休日の過ごし方',
     value: 'カフェとシーシャと古本屋に行ってチルするのがすきだよーん',
   },
-  { label: '座右の銘', value: '' },
-  { label: '将来の夢', value: 'エンジニア' },
-  { label: '自分を一言で', value: '思いついたらやらないと気が済まない性格' },
 ]
 
 type Props = {

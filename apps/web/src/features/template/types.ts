@@ -11,12 +11,12 @@ export type BoardItem = {
 
 /**
  * テンプレート作成時の入力スキーマ
- * 21個のテーマ名（itemLabels）とタイトルを必須とする
+ * 18個のテーマ名（itemLabels）とタイトルを必須とする
  */
 export const createTemplateSchema = z.object({
   itemLabels: z
     .array(z.string())
-    .length(21, { message: 'テーマ名は21個必要です' })
+    .length(18, { message: 'テーマ名は18個必要です' })
     .refine((labels) => labels.every((label) => label.trim().length > 0), {
       message: 'すべてのテーマ名を入力してください',
     }),

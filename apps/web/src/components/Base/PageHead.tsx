@@ -13,7 +13,7 @@ export const PageHead = (): React.ReactElement => (
     </title>
     <meta
       name="description"
-      content="あなたの好きなもの（アニメ、ゲーム、食べ物、音楽など）を7行3列のボード形式で整理し、視覚的に表現・共有できるサービス"
+      content="あなたの好きなもの（アニメ、ゲーム、食べ物、音楽など）を6行3列のボード形式で整理し、視覚的に表現・共有できるサービス"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" />

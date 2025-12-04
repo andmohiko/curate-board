@@ -29,7 +29,7 @@ export const TemplateEditor = ({ onBack }: Props) => {
   } = useForm<CreateTemplateInputType>({
     resolver: zodResolver(createTemplateSchema),
     defaultValues: {
-      itemLabels: Array.from({ length: 21 }, () => ''),
+      itemLabels: Array.from({ length: 18 }, () => ''),
       title: '',
     },
     mode: 'all',
