@@ -24,6 +24,12 @@ const BoardDetailPage: NextPage<Props> = ({ board }) => {
   const boardId = typeof query.id === 'string' ? query.id : null
   const { uid } = useFirebaseAuthContext()
 
+  // 動的OGP画像URLを生成
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://curationl.ink'
+  const ogImageUrl = boardId
+    ? `${appUrl}/api/og/board/${boardId}`
+    : `${appUrl}/ogp.png`
+
   return (
     <PublicLayout title="きゅれりん" isShowBackButton={board?.userId === uid}>
       <Head>
@@ -58,10 +64,9 @@ const BoardDetailPage: NextPage<Props> = ({ board }) => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="キュレーションリンク" />
-        <meta
-          property="og:image"
-          content={`${process.env.NEXT_PUBLIC_APP_URL || 'https://curationl.ink'}/ogp.png`}
-        />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
@@ -79,10 +84,7 @@ const BoardDetailPage: NextPage<Props> = ({ board }) => {
               : 'キュレーションリンク'
           }
         />
-        <meta
-          name="twitter:image"
-          content={`${process.env.NEXT_PUBLIC_APP_URL || 'https://curationl.ink'}/ogp.png`}
-        />
+        <meta name="twitter:image" content={ogImageUrl} />
       </Head>
       <BoardDetailContainer boardId={boardId} />
     </PublicLayout>
