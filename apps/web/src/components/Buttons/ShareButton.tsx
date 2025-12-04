@@ -1,7 +1,7 @@
 import { BsTwitterX } from 'react-icons/bs'
 import { BasicButton } from './BasicButton'
 
-const hashtags = ['キュレーションリンク']
+const hashtags = ['キュレーションリンク', 'きゅれりん']
 
 const createShareUrl = (body: string, url: string): string => {
   const shareUrl = new URL('http://x.com/share')
