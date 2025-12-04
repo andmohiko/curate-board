@@ -18,6 +18,7 @@
     font-weight: bold;
     text-align: center;
     color: var(--color-text-white);
+    font-family: "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   }
 
   .rightIcon {

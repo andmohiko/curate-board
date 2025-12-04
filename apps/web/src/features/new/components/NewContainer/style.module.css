@@ -54,6 +54,7 @@
   font-weight: 700;
   color: var(--color-text-black);
   margin: 0;
+  font-family: "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
 
 /* 説明文 */
