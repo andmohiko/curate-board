@@ -1,8 +1,8 @@
-import { Button } from '@mantine/core'
 import { useRouter } from 'next/router'
 import { FaChevronLeft } from 'react-icons/fa6'
 import { IoSaveOutline } from 'react-icons/io5'
 import { IconButton } from '~/components/Buttons/IconButton'
+import { InverseButton } from '~/components/Buttons/InverseButton'
 import styles from './style.module.css'
 
 type Props = {
@@ -37,14 +37,12 @@ export const EditHeader = ({ title, onSave, onBack }: Props) => {
       <h1 className={styles.title}>{title}</h1>
       {onSave ? (
         <div className={styles.rightIcon}>
-          <Button
-            variant="filled"
-            color="white"
+          <InverseButton
             leftSection={<IoSaveOutline size={20} />}
             onClick={onSave}
           >
             保存
-          </Button>
+          </InverseButton>
         </div>
       ) : (
         <div className={styles.rightIcon} />

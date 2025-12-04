@@ -2,6 +2,9 @@
   color: var(--color-text-white);
   background-color: var(--color-primary);
   border-color: var(--color-primary);
+  font-family:
+    "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
 
   &:hover {
     background-color: var(--color-primary);
@@ -13,6 +16,9 @@
   color: var(--color-primary);
   background-color: var(--bg-white0);
   border-color: var(--color-primary);
+  font-family:
+    "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
 
   &:hover {
     background-color: var(--bg-white0);
@@ -24,6 +30,9 @@
   color: var(--color-primary);
   background-color: transparent;
   border-color: transparent;
+  font-family:
+    "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
 
   &:hover {
     background-color: transparent;
@@ -36,4 +45,21 @@
   background-color: var(--color-primary);
   border-color: var(--color-primary);
   opacity: 0.5;
+}
+
+.inverse {
+  color: var(--color-primary);
+  background-color: var(--bg-white);
+  border-color: var(--bg-white);
+  font-family:
+    "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
 }
