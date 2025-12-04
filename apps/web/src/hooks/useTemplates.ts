@@ -25,7 +25,8 @@ export const useTemplates = (): [Template[], string | null, boolean] => {
       } catch (e) {
         const errorMsg = errorMessage(e)
         setError(errorMsg)
-        showErrorToast('テンプレートの取得に失敗しました', '再度お試しください')
+        console.error(errorMsg)
+        showErrorToast('テンプレートの取得に失敗しました', errorMsg)
       } finally {
         setIsLoading(false)
       }

@@ -8,7 +8,8 @@
     "lint:cspell": "cspell -c ../../cspell.json src/**/*",
     "pre-build": "tsup",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "create-template": "tsx src/scripts/createTemplate.ts"
   },
   "main": "lib/index.js",
   "dependencies": {
@@ -31,6 +32,7 @@
     "babel-plugin-module-resolver": "^5.0.2",
     "source-map-support": "^0.5.21",
     "tsup": "^8.5.0",
+    "tsx": "^4.19.2",
     "typescript": "5.3.3"
   },
   "engines": {
