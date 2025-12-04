@@ -174,6 +174,7 @@ Firestore
 │   ├── createdAt: Timestamp 作成日時
 │   ├── createdBy: UserId | null 作成者のUid
 │   ├── itemLabels: Array<String> テーマ名の配列
+│   ├── title: String テンプレートタイトル
 │   ├── type: String('official' | 'custom')
 │   └── updatedAt: Timestamp 更新日時
 └── users: ユーザー一覧コレクション

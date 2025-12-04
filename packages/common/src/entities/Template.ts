@@ -29,6 +29,7 @@ export type Template = {
   createdAt: Date
   createdBy: UserId | null
   itemLabels: string[]
+  title: string
   type: TemplateType
   updatedAt: Date
 }
@@ -52,5 +53,6 @@ export type CreateTemplateDto = Omit<
  */
 export type UpdateTemplateDto = {
   itemLabels?: Template['itemLabels']
+  title?: Template['title']
   updatedAt: FieldValue
 }

@@ -38,6 +38,7 @@
 - createdAt: Timestamp 作成日時
 - createdBy: String | null 作成したユーザーのUid（公式テンプレートの場合はnull）
 - itemLabels: Array<String> テーマ名の配列（21個）
+- title: String タイトル
 - type: String('official' | 'custom') テンプレートタイプ
 - updatedAt: Timestamp 更新日時
 

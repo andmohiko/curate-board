@@ -75,7 +75,7 @@ export const TemplateSelector = ({ onBack, onSelect }: Props) => {
                   </div>
                   <div className={styles.templateInfo}>
                     <h3 className={styles.templateTitle}>
-                      {template.itemLabels[0] || 'テンプレート'}
+                      {template.title || 'テンプレート'}
                     </h3>
                     <p className={styles.templateDescription}>
                       {template.itemLabels.length}個のテーマ

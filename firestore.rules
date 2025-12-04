@@ -43,10 +43,11 @@ service cloud.firestore {
 
     // テンプレートのスキーマ検証
     function isValidTemplateSchema(requestData) {
-      return requestData.size() == 5
+      return requestData.size() == 6
         && 'createdAt' in requestData && requestData.createdAt is timestamp
         && 'createdBy' in requestData && (requestData.createdBy is string || requestData.createdBy == null)
         && 'itemLabels' in requestData && requestData.itemLabels is list && requestData.itemLabels.size() == 21
+        && 'title' in requestData && requestData.title is string
         && 'type' in requestData && requestData.type is string && requestData.type in ['official', 'custom']
         && 'updatedAt' in requestData && requestData.updatedAt is timestamp;
     }
