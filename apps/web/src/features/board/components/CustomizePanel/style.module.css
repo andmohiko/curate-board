@@ -85,6 +85,9 @@
           padding: 0;
           text-decoration: underline;
           text-align: left;
+          font-family:
+            "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
+            "Hiragino Sans", Meiryo, sans-serif;
 
           &:hover {
             opacity: 0.8;

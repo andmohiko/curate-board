@@ -34,6 +34,9 @@
         transition: all 0.2s;
         cursor: pointer;
         text-align: left;
+        font-family:
+          "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
+          "Hiragino Sans", Meiryo, sans-serif;
 
         &:hover {
           border-color: var(--color-primary);

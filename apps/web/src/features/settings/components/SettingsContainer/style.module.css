@@ -69,6 +69,9 @@
           border-radius: 6px;
           cursor: pointer;
           transition: background-color 0.2s;
+          font-family:
+            "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
+            "Hiragino Sans", Meiryo, sans-serif;
 
           &:hover {
             background-color: rgba(0, 0, 0, 0.05);

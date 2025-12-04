@@ -1,5 +1,5 @@
 .mantineModalHeader {
-  display: none !important;
+  display: none;
 }
 
 .header {
@@ -26,6 +26,9 @@
     font-size: 18px;
     font-weight: bold;
     line-height: 2;
+    font-family:
+      "Noto Sans JP", "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic ProN",
+      "Hiragino Sans", Meiryo, sans-serif;
   }
 
   .action {
