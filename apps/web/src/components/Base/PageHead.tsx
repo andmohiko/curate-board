@@ -25,12 +25,20 @@ export const PageHead = (): React.ReactElement => (
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="キュレーションリンク" />
+    <meta
+      property="og:image"
+      content={`${process.env.NEXT_PUBLIC_APP_URL || 'https://curationl.ink'}/ogp.png`}
+    />
     {/* Twitter Card */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="キュレーションリンク" />
     <meta
       name="twitter:description"
       content="あなたの「好き」をカタチにしてシェアしよう"
+    />
+    <meta
+      name="twitter:image"
+      content={`${process.env.NEXT_PUBLIC_APP_URL || 'https://curationl.ink'}/ogp.png`}
     />
   </Head>
 )

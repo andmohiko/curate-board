@@ -58,6 +58,10 @@ const BoardDetailPage: NextPage<Props> = ({ board }) => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="キュレーションリンク" />
+        <meta
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_APP_URL || 'https://curationl.ink'}/ogp.png`}
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
@@ -75,7 +79,10 @@ const BoardDetailPage: NextPage<Props> = ({ board }) => {
               : 'キュレーションリンク'
           }
         />
-        <meta name="twitter:image" content="https://curationl.ink/ogp.png" />
+        <meta
+          name="twitter:image"
+          content={`${process.env.NEXT_PUBLIC_APP_URL || 'https://curationl.ink'}/ogp.png`}
+        />
       </Head>
       <BoardDetailContainer boardId={boardId} />
     </PublicLayout>
