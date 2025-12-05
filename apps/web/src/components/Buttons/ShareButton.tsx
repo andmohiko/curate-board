@@ -25,6 +25,7 @@ export const ShareButton = ({ body, url }: Props): React.ReactNode => {
     <BasicButton
       leftSection={<BsTwitterX size={20} />}
       href={createShareUrl(body, url)}
+      target="_blank"
     >
       ポストする
     </BasicButton>
