@@ -3,8 +3,14 @@ import { BasicButton } from './BasicButton'
 
 const hashtags = ['キュレーションリンク', 'きゅれりん']
 
+/**
+ * X（旧Twitter）のシェアURLを生成する関数
+ * @param body - ツイート本文
+ * @param url - シェアするURL
+ * @returns Xのシェア用URL
+ */
 const createShareUrl = (body: string, url: string): string => {
-  const shareUrl = new URL('http://x.com/share')
+  const shareUrl = new URL('https://twitter.com/intent/tweet')
   const urlParams = [
     ['text', body],
     ['url', url],
