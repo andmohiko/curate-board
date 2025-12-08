@@ -92,18 +92,6 @@ export const NewContainer = (): React.ReactNode => {
             </svg>
             Googleでログイン
           </button>
-
-          <p className={styles.terms}>
-            ログインすることで
-            <button type="button" className={styles.link}>
-              利用規約
-            </button>
-            と
-            <button type="button" className={styles.link}>
-              プライバシーポリシー
-            </button>
-            に同意したものとみなされます
-          </p>
         </div>
       </div>
     </div>

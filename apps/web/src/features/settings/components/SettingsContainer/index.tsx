@@ -68,15 +68,6 @@ const OtherCard = (): React.ReactNode => {
         </LabelText>
       </div>
       <div className={styles.cardContent}>
-        <button type="button" className={styles.linkButton}>
-          利用規約
-        </button>
-        <button type="button" className={styles.linkButton}>
-          プライバシーポリシー
-        </button>
-        <button type="button" className={styles.linkButton}>
-          お問い合わせ
-        </button>
         <div className={styles.versionSection}>
           <LabelText size="xs" color="gray">
             バージョン 1.0.0
